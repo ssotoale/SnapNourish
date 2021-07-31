@@ -11,6 +11,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import db from "./firebase";
 
 const Stack = createStackNavigator();
 
