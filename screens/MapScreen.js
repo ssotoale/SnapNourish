@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Callout, Marker} from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
@@ -13,6 +13,10 @@ const LOS_ANGELES_REGION = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 };
+
+const bottomNav = () => {
+  console.log("Should pop off a bottom navigator");
+}
 
 export default function MapScreen() {
   const [currLocation, setCurrLocation] = useState(null);
@@ -55,7 +59,15 @@ export default function MapScreen() {
             coordinate={currLocation}
             title={"Current Location"}
             description={"You are here!"}
-          />
+            // onPress={alert("Popping a navigation from the bottom!")}
+          >
+            <Callout onPress={bottomNav}> 
+              {/* {console.log('hEY, SuP')} */}
+              <View>
+                <Text>Click Me!</Text>
+              </View>
+            </Callout>
+          </Marker>
         ) : null}
       </MapView>
       {currLocation ? (
