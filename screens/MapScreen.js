@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Callout, Marker, Polygon} from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../constants/Colors";
+import { render } from "react-dom";
 
 const LOS_ANGELES_REGION = {
   latitude: 34.0522,
@@ -14,7 +15,21 @@ const LOS_ANGELES_REGION = {
   longitudeDelta: 0.0421,
 };
 
+const bottomNav = () => {
+  console.log("Should pop off a bottom navigator");
+}
+
 export default function MapScreen() {
+  //hard coded markets near me
+  state = {
+    coordinates: [
+      { name: "Food4Less", latitude: 34.04138508288139, longitude: -118.20572644498924 },
+      // { name: "2", latitude: 34.04161326513858, longitude: -118.19196488652315 },
+      { name: "Northgate Market", latitude: 34.04149176634087, longitude: -118.21305306673202 },
+      { name: "Maria's Market", latitude: 34.05386544479957, longitude:  -118.21238943869908 },
+      { name: "OK Market", latitude: 34.048898025826524, longitude: -118.20207774216696 },
+    ]
+  }
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
 
@@ -50,13 +65,48 @@ export default function MapScreen() {
         style={styles.map}
         initialRegion={LOS_ANGELES_REGION}
       >
+      
+      {/* adding polygon for shaded area of close markets */}
+      <Polygon
+        coordinates={this.state.coordinates}
+        fillColor={'rgba(100, 200, 200, 0.3)'}
+        strokeWidth={3}
+      />
+
         {currLocation ? (
           <Marker
             coordinate={currLocation}
             title={"Current Location"}
             description={"You are here!"}
-          />
+            // onPress={alert("Popping a navigation from the bottom!")}
+          >
+            <Callout onPress={bottomNav}> 
+              {/* {console.log('hEY, SuP')} */}
+              <View>
+                {/* file path weird */}
+                {/* <Image source={require('../assets/sam.png')} /> */}
+                <Text>Me</Text>
+              </View>
+            </Callout>
+
+            {/* <Image source={require('../assets/sam.png')} /> */}
+
+          </Marker>
         ) : null}
+        
+        {this.state.coordinates.map(marker => (
+          <Marker
+          key={marker.name}
+          coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+          // title={marker.name}
+          >
+            <Callout>
+              <Text>{marker.name}</Text>
+            </Callout>
+          </Marker>
+        ))
+        }
+
       </MapView>
       {currLocation ? (
         <View style={styles.locateButtonContainer}>
