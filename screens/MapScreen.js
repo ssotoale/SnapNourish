@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, YellowBox } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Callout, Marker, Polygon} from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -32,7 +32,7 @@ export default function MapScreen() {
   }
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
-
+  
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -89,7 +89,7 @@ export default function MapScreen() {
               </View>
             </Callout>
 
-            {/* <Image source={require('../assets/sam.png')} /> */}
+            {/* <Image source={'../assets/sam.png'} /> */}
 
           </Marker>
         ) : null}
