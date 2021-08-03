@@ -70,7 +70,7 @@ export default function MapScreen() {
       <Polygon
         coordinates={this.state.coordinates}
         fillColor={'rgba(100, 200, 200, 0.3)'}
-        strokeWidth={3}
+        strokeWidth={1}
       />
 
         {currLocation ? (
@@ -98,8 +98,10 @@ export default function MapScreen() {
           <Marker
           key={marker.name}
           coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+          // image={require('../assets/2021_Map_Pin_Grocery.png')} 
           // title={marker.name}
           >
+            <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 100, width:100 }} resizeMode="contain"/>
             <Callout>
               <Text>{marker.name}</Text>
             </Callout>
