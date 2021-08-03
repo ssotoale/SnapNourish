@@ -14,8 +14,8 @@ import Animated, { withDecay } from "react-native-reanimated";
 import { rosybrown } from "color-name";
 
 //trying to retrieve data from firebase
-// import db from "../firebase";
-// import firebase from "@firebase/app";
+import db from "../firebase";
+import firebase from "@firebase/app";
 
 const LOS_ANGELES_REGION = {
   latitude: 34.0522,
@@ -28,12 +28,12 @@ const bottomNav = () => {
   console.log("Should pop off a bottom navigator");
 }
 
-export default function MapScreen() {
+export default function MapScreen({navigation}) {
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
   
   //trying to retrieve data from firebase
-  //const [dummySelf, setDummySelf] = useState([]);
+  const [dummySelf, setDummySelf] = useState([]);
 
   const renderInner = () => (
     <View style={styles.panel}>
@@ -190,10 +190,10 @@ export default function MapScreen() {
       setCurrLocation(location.coords);
       
       //trying to retrieve data from firebase
-      // let dummy = db.collection("dummyTest").doc("dummySelfData").get();
-      // setDummySelf(dummy);
-      // console.log('Printing dummy data to console')
-      // console.log(dummy);
+      let dummy = await db.collection("dummyTest").doc("dummySelfData").get();
+      setDummySelf(dummy);
+      console.log('Printing dummy data to console')
+      console.log(dummy.data().self);
     })();
   }, []);
 
@@ -230,9 +230,11 @@ export default function MapScreen() {
             coordinate={currLocation}
             title={"Current Location"}
             description={"You are here!"}
-            // onPress={alert("Popping a navigation from the bottom!")}
+            // onr={alert("Popping a navigation from the bottom!")}
           >
-            <Callout onPress={() => bs.current.snapTo(0)}> 
+          {/* {bs.current.snapTo(0)} */}
+          {/* navigation.navigate("Store") */}
+            <Callout onPress={() =>  navigation.navigate("Grocery")}> 
               {/* {console.log('hEY, SuP')} */}
               <View>
                 <Text>Click Me!</Text>

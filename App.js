@@ -3,11 +3,14 @@ import React, { useState, useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import GroceryNavigator from "./navigation/GroceryNavigator";
 import ChatScreen from "./screens/ChatScreen";
 import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import ModalPage from './screens/ModalPage';
+import StoreScreen from './screens/StoreScreen';
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
@@ -30,13 +33,16 @@ function App() {
     <ActionSheetProvider>
       <View style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Tabs" mode="card">
+          <Stack.Navigator initialRouteName="Tabs" mode="modal">
             {isSignedIn ? (
               <>
                 <Stack.Screen name="Tabs" component={BottomTabNavigator} />
                 <Stack.Screen name="Chat" component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="Grocery" component={GroceryNavigator} />
+                {/* <Stack.Screen name="Store" component={StoreScreen} />
+                <Stack.Screen name="Recipe" component={ModalPage} /> */}
               </>
             ) : (
               <>
