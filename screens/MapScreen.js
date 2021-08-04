@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image, YellowBox } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Callout, Marker, Polygon} from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
