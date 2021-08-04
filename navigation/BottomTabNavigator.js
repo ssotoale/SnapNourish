@@ -133,6 +133,10 @@ function getHeaderTitle(route) {
       return "Friends";
     case "Spotlight":
       return "Spotlight";
+    case "Store":
+      return "Store";
+    case "Recipe":
+      return "Recipe";
   }
 }
 
