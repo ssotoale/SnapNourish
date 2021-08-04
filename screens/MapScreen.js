@@ -23,11 +23,17 @@ export default function MapScreen() {
   //hard coded markets near me
   state = {
     coordinates: [
-      { name: "Food4Less", latitude: 34.04138508288139, longitude: -118.20572644498924 },
+      { id: "Grocery Store", name: "Food4Less", latitude: 34.04138508288139, longitude: -118.20572644498924 },
       // { name: "2", latitude: 34.04161326513858, longitude: -118.19196488652315 },
-      { name: "Northgate Market", latitude: 34.04149176634087, longitude: -118.21305306673202 },
-      { name: "Maria's Market", latitude: 34.05386544479957, longitude:  -118.21238943869908 },
-      { name: "OK Market", latitude: 34.048898025826524, longitude: -118.20207774216696 },
+      { id: "Grocery Store", name: "Northgate Market", latitude: 34.04149176634087, longitude: -118.21305306673202 },
+      // { id: "Grocery Store", name: "Maria's Market", latitude: 34.05386544479957, longitude:  -118.21238943869908 },
+      // { id: "Grocery Store", name: "OK Market", latitude: 34.048898025826524, longitude: -118.20207774216696 },
+      { id: "Community Fridge", name: "Milpa Grille Community Fridge", latitude: 34.04557389613924, longitude: -118.20430516486128 },
+      { id: "Grocery Store", name: "El Super", latitude: 34.042485251204994, longitude: -118.19204009359478 },
+      { id: "Grocery Store", name: "Smart and Final", latitude: 34.04145398670342, longitude: -118.21259654209187 },
+      { id: "Farmers Market", name: "East LA Farmer's Market", latitude: 34.035989409230865, longitude: -118.15829650851983 },
+      { id: "Farmers Market", name: "Historic Downtown Farmer's Market", latitude: 34.04909207602838, longitude: -118.24600910592015 },
+      { id: "Pantry", name: "Hospitality Kitchen", latitude: 34.04136433668679, longitude: -118.24147278228973 }
     ]
   }
   const [currLocation, setCurrLocation] = useState(null);
@@ -66,12 +72,12 @@ export default function MapScreen() {
         initialRegion={LOS_ANGELES_REGION}
       >
       
-      {/* adding polygon for shaded area of close markets */}
-      <Polygon
+      {/* polygon for shaded area of close markets */}
+      {/* <Polygon
         coordinates={this.state.coordinates}
         fillColor={'rgba(100, 200, 200, 0.3)'}
         strokeWidth={1}
-      />
+      /> */}
 
         {currLocation ? (
           <Marker
@@ -80,6 +86,8 @@ export default function MapScreen() {
             description={"You are here!"}
             // onPress={alert("Popping a navigation from the bottom!")}
           >
+            {/* <Image source={require('../assets/sam.png')} style={height: 100, width:100 } /> */}
+            <Image source={require('../assets/sam.png')} style={{height: 200, width:200 }} resizeMode="contain"/>
             <Callout onPress={bottomNav}> 
               {/* {console.log('hEY, SuP')} */}
               <View>
@@ -101,7 +109,11 @@ export default function MapScreen() {
           // image={require('../assets/2021_Map_Pin_Grocery.png')} 
           // title={marker.name}
           >
-            <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 100, width:100 }} resizeMode="contain"/>
+            {/* <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 100, width:100 }} resizeMode="contain"/> */}
+            {marker.id === "Grocery Store" ? <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
+            {marker.id === "Community Fridge" ? <Image source={require('../assets/2021_Map_Pin_Community_Fridge.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
+            {marker.id === "Farmers Market" ? <Image source={require('../assets/2021_Map_Pin_Farmers_Market.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
+            {marker.id === "Pantry" ? <Image source={require('../assets/2021_Map_Pin_Pantry.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
             <Callout>
               <Text>{marker.name}</Text>
             </Callout>
@@ -145,3 +157,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.snapyellow,
   },
 });
+
