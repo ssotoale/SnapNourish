@@ -22,7 +22,7 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={styles.placeholderText}>3 green bell peppers</Text>
                         </View>
                     </View>
 
@@ -30,7 +30,8 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={styles.placeholderText}>1 lbs of</Text>
+                            <Text style={{textAlign: 'center', color: 'white'}}>Ground Turkey </Text>
                         </View>
                     </View>
 
@@ -38,7 +39,7 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={styles.placeholderText}>1 Large Yellow Onion</Text>
                         </View>
                     </View>
 
@@ -46,7 +47,7 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1-1/2 cups soft bread crumbs</Text>
                         </View>
                     </View>
 
@@ -54,7 +55,7 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>2 medium tomatoes</Text>
                         </View>
                     </View>
 
@@ -62,9 +63,50 @@ export default function ModalPage() {
                         <View style={styles.emptyIngrident}>
                         </View>
                         <View style={styles.bottomText}>
-                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1-2/4 cups shredded cheese</Text>
                         </View>
                     </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1 garlic clove, minced</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>2 teaspoons ground cumin</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1/2 teaspoon salt</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1/2 teaspoon pepper</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>1/4 teaspoon paprika</Text>
+                        </View>
+                    </View>
+
                 </View>
                     
                 
@@ -106,9 +148,14 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 25
     },
     emptyIngrident: {
-        backgroundColor: 'black',
+        backgroundColor: 'lightgrey',
         height: 300,
         width: 200,
         borderRadius: 25
+    },
+    placeholderText: {
+        textAlign: 'center', 
+        marginTop: 5, 
+        color: 'white'
     }
 });
