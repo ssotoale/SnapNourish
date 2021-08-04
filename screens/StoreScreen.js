@@ -12,29 +12,50 @@ export default function StoriesScreen({navigation}) {
     const [lunch, setLunch] = useState([]);
     const [dinner, setDinner] = useState([]);
     const [dayMeal, setDayMeal] = useState(undefined);
+    const [storeImage, setStoreImage] = useState(null);
+    const [mealImage, setMealImage] = useState(null);
 
     let storeName;
     // let dayMeal;
     let breakfastImageTest;
 
     useEffect(() => {
-        (async () => {
+        // (async () => {
             // let dummy = await db.collection("dummyTest").doc("dummySelfData").get();
             // setDummySelf(dummy.data().self);
             // console.log('Printing dummy data to console')
             // console.log(dummy.data().self);
             // console.log(dummySelf[0]);
 
-            let d = await db.collection("groceryData").doc("stores").get();
-            setStore(d.data().groceryOutlet);
-            setBreakfast(d.data().groceryOutlet['meals']['breakfast']);
-            setLunch(d.data().groceryOutlet['meals']['lunch']);
-            setDinner(d.data().groceryOutlet['meals']['dinner']);
+            // let d = db.collection("groceryData").doc("stores").get();
+            // setStore(d.data().groceryOutlet);
+            // setBreakfast(d.data().groceryOutlet['meals']['breakfast']);
+            // setLunch(d.data().groceryOutlet['meals']['lunch']);
+            // setDinner(d.data().groceryOutlet['meals']['dinner']);
             // console.log('Printing Store Data');
             // console.log(store);
             // storeName = store['name'];
             // console.log(storeName);
-        })();
+        // })();
+
+        var docRef = db.collection("groceryData").doc("stores");
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setStore(doc.data().groceryOutlet);
+                setBreakfast(doc.data().groceryOutlet['meals']['breakfast']);
+                setLunch(doc.data().groceryOutlet['meals']['lunch']);
+                setDinner(doc.data().groceryOutlet['meals']['dinner']);
+                setStoreImage(doc.data().groceryOutlet['meals']['breakfast'][0].image);
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
     }, []);
 
     // storeName = store['name'];
@@ -62,8 +83,8 @@ export default function StoriesScreen({navigation}) {
                 <View>
                     <Image
                     style={styles.imagePlaceholder}
-                    source={require('../assets/icon.png')}
-                    // source={{uri: breakfast[0].image}}
+                    // source={require('../assets/icon.png')}
+                    source={{uri: storeImage}}
                     />
                 </View>
                 <View style={styles.groceryDetailsText}>
@@ -83,7 +104,6 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.button}
-                            // onPress={setDayMeal(store['meals']['breakfast'])}
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Directions</Text>
                         </TouchableOpacity>
@@ -112,6 +132,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
+                            onPress={() => setDayMeal(store['meals']['breakfast'])} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Breakfast</Text>
                         </TouchableOpacity>
@@ -120,6 +141,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
+                            onPress={() => setDayMeal(store['meals']['lunch'])} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Lunch</Text>
                         </TouchableOpacity>
@@ -128,6 +150,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
+                            onPress={() => setDayMeal(store['meals']['dinner'])} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Dinner</Text>
                         </TouchableOpacity>
@@ -136,6 +159,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
+                            onPress={() => setDayMeal(store['meals']['snacks'])} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Snacks</Text>
                         </TouchableOpacity>
@@ -151,15 +175,18 @@ export default function StoriesScreen({navigation}) {
                 </View> */}
 
                 {/*MAPPING THROUGH MEALS HERE*/}
-                    {/* {
+                    {
                     dayMeal ?
-                    dayMeal.map((meal) => (
-                        <View style={styles.mealContainer}>
+                    dayMeal.map((meal, index) => (
+
+                        <View key={index} style={styles.mealContainer}>
                             <View style={styles.mealDetails}>
+                                {/* {setMealImage(meal.image)} */}
                                 <View>
                                     <Image
                                         style={styles.imagePlaceholder}
-                                        source={require('../assets/icon.png')}
+                                        // source={require('../assets/icon.png')}
+                                        source={{uri: meal.image}}
                                     />
                                     </View>
                                     <View style={{margin: 10}}>
@@ -179,11 +206,11 @@ export default function StoriesScreen({navigation}) {
                         <View>
                             <Text>Select what you're looking for!</Text>
                         </View>
-                    }      */}
+                    }     
 
                 {/* {Delete the bottom hard coded meal placeholders} */}
 
-                <View style={styles.mealContainer}>
+                {/* <View style={styles.mealContainer}>
                 <View style={styles.mealDetails}>
                     <View>
                     <Image
@@ -303,7 +330,7 @@ export default function StoriesScreen({navigation}) {
                     </TouchableOpacity>
                     </View>
                 </View>
-                </View>
+                </View> */}
 
                 {/* <Text>Grocery Lists</Text>
                 <Text>Your pinned content should go here!</Text>   */}
