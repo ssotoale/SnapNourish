@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text} from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ModalPage() {
 
@@ -7,67 +8,68 @@ export default function ModalPage() {
         // <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         //     <Text>Hi from the Grocery Store</Text>
         // </View>
-
-        <View style={styles.panel}>
-            <View>
-                <Text style={{fontWeight: 'bold', fontSize: 24}}>Name of Meal</Text>
-                <Text>10 minute meal | $6 | 6 servings</Text>
-            </View>
-            
-            <Text style={{fontWeight: "bold", marginTop: 30}}>Ingridients</Text>
-
-            <View style={styles.placeholderContainer}>
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
+        <ScrollView>
+            <View style={styles.panel}>
+                <View>
+                    <Text style={{fontWeight: 'bold', fontSize: 24}}>Name of Meal</Text>
+                    <Text>10 minute meal | $6 | 6 servings</Text>
                 </View>
-
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
-                </View>
-
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
-                </View>
-
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
-                </View>
-
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
-                </View>
-
-                <View style={styles.imagePlaceholder}>
-                    <View style={styles.emptyIngrident}>
-                    </View>
-                    <View style={styles.bottomText}>
-                        <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
-                    </View>
-                </View>
-            </View>
                 
-            
-        </View>
+                <Text style={{fontWeight: "bold", marginTop: 30}}>Ingridients</Text>
+
+                <View style={styles.placeholderContainer}>
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.imagePlaceholder}>
+                        <View style={styles.emptyIngrident}>
+                        </View>
+                        <View style={styles.bottomText}>
+                            <Text style={{textAlign: 'center', marginTop: 15}}>Item Name</Text>
+                        </View>
+                    </View>
+                </View>
+                    
+                
+            </View>
+        </ScrollView>
     );
 }
 

@@ -190,10 +190,10 @@ export default function MapScreen({navigation}) {
       setCurrLocation(location.coords);
       
       //trying to retrieve data from firebase
-      let dummy = await db.collection("dummyTest").doc("dummySelfData").get();
-      setDummySelf(dummy);
-      console.log('Printing dummy data to console')
-      console.log(dummy.data().self);
+      // let dummy = await db.collection("dummyTest").doc("dummySelfData").get();
+      // setDummySelf(dummy);
+      // console.log('Printing dummy data to console')
+      // console.log(dummy.data().self);
     })();
   }, []);
 
@@ -234,7 +234,7 @@ export default function MapScreen({navigation}) {
           >
           {/* {bs.current.snapTo(0)} */}
           {/* navigation.navigate("Store") */}
-            <Callout onPress={() =>  navigation.navigate("Grocery")}> 
+            <Callout onPress={() =>  navigation.navigate("Store")}> 
               {/* {console.log('hEY, SuP')} */}
               <View>
                 <Text>Click Me!</Text>

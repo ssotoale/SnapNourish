@@ -40,9 +40,9 @@ function App() {
                 <Stack.Screen name="Chat" component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
-                <Stack.Screen name="Grocery" component={GroceryNavigator} />
-                {/* <Stack.Screen name="Store" component={StoreScreen} />
-                <Stack.Screen name="Recipe" component={ModalPage} /> */}
+                {/* <Stack.Screen name="Grocery" component={GroceryNavigator} /> */}
+                <Stack.Screen name="Store" component={StoreScreen} />
+                <Stack.Screen name="Recipe" component={ModalPage} />
               </>
             ) : (
               <>
