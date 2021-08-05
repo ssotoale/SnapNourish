@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, Button, Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import Meals from '../components/Meals.js';
+import CalFresh from '../components/CalFresh.js';
+import DefaultStoreUI from '../components/DefaultStoreUI.js';
 import db from "../firebase";
 
 export default function StoriesScreen({navigation}) {
@@ -11,7 +14,8 @@ export default function StoriesScreen({navigation}) {
     const [breakfast, setBreakfast] = useState([]);
     const [lunch, setLunch] = useState([]);
     const [dinner, setDinner] = useState([]);
-    const [dayMeal, setDayMeal] = useState(undefined);
+    const [dayMeal, setDayMeal] = useState(null);
+    const [otherUI, setOtherUI] = useState(undefined);
     const [storeImage, setStoreImage] = useState(null);
     const [mealImage, setMealImage] = useState(null);
 
@@ -47,7 +51,8 @@ export default function StoriesScreen({navigation}) {
                 setBreakfast(doc.data().groceryOutlet['meals']['breakfast']);
                 setLunch(doc.data().groceryOutlet['meals']['lunch']);
                 setDinner(doc.data().groceryOutlet['meals']['dinner']);
-                setStoreImage(doc.data().groceryOutlet['meals']['breakfast'][0].image);
+                // setStoreImage(doc.data().groceryOutlet['meals']['breakfast'][0].image);
+                setStoreImage(doc.data().groceryOutlet.groceryImage);
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -57,6 +62,31 @@ export default function StoriesScreen({navigation}) {
         });
 
     }, []);
+
+    const callGroceryUI = (s) => {
+
+        setDayMeal(null);
+        setOtherUI(undefined);
+
+        if (s === 'breakfast') {
+            setDayMeal(breakfast);
+        }
+        else if (s === 'lunch') {
+            setDayMeal(lunch);
+        } else if (s === 'dinner') {
+            setDayMeal(dinner)
+        } else {
+            setOtherUI('calfresh');
+        }
+
+        console.log(s);
+
+        if(dayMeal)
+            console.log('daymeal is defined')
+        
+        if(otherUI)
+            console.log('otherUI is defined')
+    };
 
     // storeName = store['name'];
     // // dayMeal = store.meals.breakfast;
@@ -74,9 +104,7 @@ export default function StoriesScreen({navigation}) {
         
         <ScrollView>
             {console.log('loading')}
-            {console.log('loading')}
-            {console.log('loading')}
-            {console.log(breakfast)}
+            {/* {console.log(breakfast)} */}
             <View style={styles.panel}>
             <View>
                 <View style={styles.groceryDetails}>
@@ -95,7 +123,11 @@ export default function StoriesScreen({navigation}) {
                 
                 
                 <View style={{padding: 10}}></View>
-                <Text>Open Now {store.hours}</Text>
+                <Text>
+                    <Text style={{fontWeight: "bold"}}>Open Now  </Text>
+                    <Text>{store.hours}</Text>
+                </Text>
+                {/* <Text>Open Now {store.hours}</Text> */}
                 <Text>{'\t1615 W Verdugo Ave, Burbank, CA 91506'}</Text>
                 <Text>{'\t(123)456-7890'}</Text>
 
@@ -104,8 +136,9 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.button}
+                            onPress={() => callGroceryUI('calfresh')}
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Directions</Text>
+                            <Text style={{color: "white", textAlign: 'center'}}>Resources</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -113,7 +146,7 @@ export default function StoriesScreen({navigation}) {
                         <TouchableOpacity 
                             style={styles.button}
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Coupons</Text>
+                            <Text style={{color: "white", textAlign: 'center'}}>Directions</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -129,34 +162,34 @@ export default function StoriesScreen({navigation}) {
 
 
                 <View style={{flexDirection: 'row', padding: 5, justifyContent: 'center'}}>
-                    <View style={{padding: 5}}>
+                    <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => setDayMeal(store['meals']['breakfast'])} 
+                            onPress={() => callGroceryUI('breakfast')} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Breakfast</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{padding: 5}}>
+                    <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => setDayMeal(store['meals']['lunch'])} 
+                            onPress={() => callGroceryUI('lunch')} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Lunch</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{padding: 5}}>
+                    <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => setDayMeal(store['meals']['dinner'])} 
+                            onPress={() => callGroceryUI('dinner')} 
                         >
                             <Text style={{color: "white", textAlign: 'center'}}>Dinner</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{padding: 5}}>
+                    <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
                             onPress={() => setDayMeal(store['meals']['snacks'])} 
@@ -177,35 +210,11 @@ export default function StoriesScreen({navigation}) {
                 {/*MAPPING THROUGH MEALS HERE*/}
                     {
                     dayMeal ?
-                    dayMeal.map((meal, index) => (
-
-                        <View key={index} style={styles.mealContainer}>
-                            <View style={styles.mealDetails}>
-                                {/* {setMealImage(meal.image)} */}
-                                <View>
-                                    <Image
-                                        style={styles.imagePlaceholder}
-                                        // source={require('../assets/icon.png')}
-                                        source={{uri: meal.image}}
-                                    />
-                                    </View>
-                                    <View style={{margin: 10}}>
-                                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>{meal.mealName}</Text>
-                                    <Text style={{paddingLeft: 10}}>{meal.mealPrepTime} minute meal | {meal.priceRange} Price Range</Text>
-                                    <TouchableOpacity
-                                        style={styles.recipeButton}
-                                        onPress={() => navigation.navigate('Recipe')}
-                                    >
-                                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                                    </TouchableOpacity>
-                                </View> 
-                            </View>
-                        </View>   
-                    ))
+                        <Meals dayMeal={dayMeal} navigation={navigation}/>
+                    : otherUI ?
+                        <CalFresh />
                     :
-                        <View>
-                            <Text>Select what you're looking for!</Text>
-                        </View>
+                        <DefaultStoreUI />
                     }     
 
                 {/* {Delete the bottom hard coded meal placeholders} */}
@@ -383,7 +392,7 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor: "#000000",
       padding: 10,
-      width: 150,
+      width: 120,
       marginTop: 20,
       borderRadius: 50,
       justifyContent: "space-between"
@@ -391,7 +400,7 @@ const styles = StyleSheet.create({
     buttonMeal: {
       backgroundColor: "#000000",
       padding: 10,
-      width: 100,
+      width: 90,
     //   marginTop: 10,
       borderRadius: 50,
       justifyContent: "space-between"
@@ -401,7 +410,7 @@ const styles = StyleSheet.create({
       padding: 5,
       width: 100,
       marginTop: 10,
-      marginLeft: 10,
+      marginLeft: 5,
       borderRadius: 50,
       justifyContent: "space-between"
     },

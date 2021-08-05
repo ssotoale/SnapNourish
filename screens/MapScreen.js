@@ -286,9 +286,11 @@ export default function MapScreen({navigation}) {
           >
             {/* <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 100, width:100 }} resizeMode="contain"/> */}
             {marker.id === "Grocery Store" ? <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {marker.id === "Community Fridge" ? <Image source={require('../assets/2021_Map_Pin_Community_Fridge.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
+            {/* {marker.id === "Community Fridge" ? <Image source={require('../assets/2021_Map_Pin_Community_Fridge.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
             {marker.id === "Farmers Market" ? <Image source={require('../assets/2021_Map_Pin_Farmers_Market.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {marker.id === "Pantry" ? <Image source={require('../assets/2021_Map_Pin_Pantry.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
+            {marker.id === "Pantry" ? <Image source={require('../assets/2021_Map_Pin_Pantry.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null} */}
+            {/* Bottom line will crash if you save while on the map screen. Otherwise no issues. Reload expo if an error is thrown. The storeScreen should open up no matter which pin is clicked atm. */}
+            {/* <Callout onPress={() =>  navigation.navigate("Store")}>  */}
             <Callout>
               <Text>{marker.name}</Text>
             </Callout>
