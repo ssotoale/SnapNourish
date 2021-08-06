@@ -9,7 +9,7 @@ import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import ModalPage from './screens/ModalPage';
+import RecipePage from './screens/RecipePage';
 import StoreScreen from './screens/StoreScreen';
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
@@ -42,7 +42,7 @@ function App() {
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 {/* <Stack.Screen name="Grocery" component={GroceryNavigator} /> */}
                 <Stack.Screen name="Store" component={StoreScreen} />
-                <Stack.Screen name="Recipe" component={ModalPage} />
+                <Stack.Screen name="Recipe" component={RecipePage} />
               </>
             ) : (
               <>

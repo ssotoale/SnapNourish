@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
-export default function ModalPage() {
+export default function RecipePage() {
 
     return(
         // <View style={{flexDirection: 'row', justifyContent: 'center'}}>

@@ -129,7 +129,7 @@ export default function StoriesScreen({navigation}) {
                 </Text>
                 {/* <Text>Open Now {store.hours}</Text> */}
                 <Text>{'\t1615 W Verdugo Ave, Burbank, CA 91506'}</Text>
-                <Text>{'\t(123)456-7890'}</Text>
+                <Text>{'\t(747)283-1129'}</Text>
 
                 <View style={{flexDirection: 'row', padding: 5, justifyContent: 'center'}}>
 
