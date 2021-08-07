@@ -5,6 +5,7 @@ import Meals from '../components/Meals.js';
 import CalFresh from '../components/CalFresh.js';
 import DefaultStoreUI from '../components/DefaultStoreUI.js';
 import db from "../firebase";
+import { assets } from "../react-native.config.js";
 
 export default function StoriesScreen({navigation}) {
 
@@ -116,10 +117,20 @@ export default function StoriesScreen({navigation}) {
                     />
                 </View>
                 <View style={styles.groceryDetailsText}>
-                    <Text style={{fontWeight: 'bold', fontSize: 22}}>{store.name}</Text>
-                    <Text>Affordable Market</Text>
+                    <View style={{flexGrow: 2}}>
+                        <Text style={{fontWeight: 'bold', fontSize: 22}}>{store.name}</Text>
+                        <Text>Affordable Market</Text>
+                    </View>
+                    
+                    
                 </View>
+                <View style={{padding: 20, marginLeft: 30}}>
+                        <Image 
+                            style={{width: 25, height: 20}}
+                            source={require('../assets/3dots.png')}
+                        />
                 </View>
+            </View>
                 
                 
                 <View style={{padding: 10}}></View>
@@ -138,7 +149,7 @@ export default function StoriesScreen({navigation}) {
                             style={styles.button}
                             onPress={() => callGroceryUI('calfresh')}
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Resources</Text>
+                            <Text style={styles.buttonText}>Resources</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -146,15 +157,15 @@ export default function StoriesScreen({navigation}) {
                         <TouchableOpacity 
                             style={styles.button}
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Directions</Text>
+                            <Text style={styles.buttonText}>Directions</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
-                            style={styles.button}
+                            style={styles.sendButton}
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Send</Text>
+                            <Text style={{color: 'white', fontWeight:'bold', textAlign: 'center', fontSize: 13}}>Send</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -167,7 +178,7 @@ export default function StoriesScreen({navigation}) {
                             style={styles.buttonMeal}
                             onPress={() => callGroceryUI('breakfast')} 
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Breakfast</Text>
+                            <Text style={styles.buttonText}>Breakfast</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -176,7 +187,7 @@ export default function StoriesScreen({navigation}) {
                             style={styles.buttonMeal}
                             onPress={() => callGroceryUI('lunch')} 
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Lunch</Text>
+                            <Text style={styles.buttonText}>Lunch</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -185,7 +196,7 @@ export default function StoriesScreen({navigation}) {
                             style={styles.buttonMeal}
                             onPress={() => callGroceryUI('dinner')} 
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Dinner</Text>
+                            <Text style={styles.buttonText}>Dinner</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -194,7 +205,7 @@ export default function StoriesScreen({navigation}) {
                             style={styles.buttonMeal}
                             onPress={() => setDayMeal(store['meals']['snacks'])} 
                         >
-                            <Text style={{color: "white", textAlign: 'center'}}>Snacks</Text>
+                            <Text style={styles.buttonText}>Snacks</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -210,7 +221,24 @@ export default function StoriesScreen({navigation}) {
                 {/*MAPPING THROUGH MEALS HERE*/}
                     {
                     dayMeal ?
-                        <Meals dayMeal={dayMeal} navigation={navigation}/>
+                        <View>
+                            <Meals dayMeal={dayMeal} navigation={navigation}/>
+                            <Text style={{width: 375, textAlign: 'center', fontWeight: 'bold', marginTop: 40, marginBottom: 15}}>That's some good eats!</Text>
+
+                            {/* <Text style={{textAlign: 'center', marginTop: 30}}>Now that was easy!</Text> */}
+                            <View style={{flexDirection: 'row', padding: 5, justifyContent: 'center'}}>
+                                <TouchableOpacity style={styles.buttonTop}>
+                                    <Text style={{fontWeight: "bold", textAlign: 'center'}}>Back to the top</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={styles.bottomBitmoji}>
+                                <Image 
+                                    style={{width: 200, height: 200}}
+                                    source={require('../assets/Bitmojis/Nayeli/file-7.png')}
+                                />
+                            </View>
+                        </View>
                     : otherUI ?
                         <CalFresh />
                     :
@@ -343,6 +371,17 @@ export default function StoriesScreen({navigation}) {
 
                 {/* <Text>Grocery Lists</Text>
                 <Text>Your pinned content should go here!</Text>   */}
+
+
+                {/* <Text style={{width: 375, textAlign: 'center', fontWeight: 'bold', marginTop: 15, marginBottom: 15}}>Grab some resources</Text>
+
+                <View style={styles.bottomBitmoji}>
+                <Image 
+                    style={{width: 200, height: 200}}
+                    source={require('../assets/baconBit.png')}
+                />
+                </View> */}
+
             </View>      
             </View>
         </ScrollView>
@@ -363,7 +402,7 @@ const styles = StyleSheet.create({
     },
     panel: {
       padding: 20,
-      backgroundColor: '#ECECEC',
+      backgroundColor: 'rgb(238, 239, 241)9',
       paddingTop: 20,
     //   minHeight: 400,
     },
@@ -384,23 +423,52 @@ const styles = StyleSheet.create({
       borderWidth: 5,
     },
     groceryDetails: {
-      flexDirection: 'row', 
+      flexDirection: 'row',
+      width: 380 
     },
     groceryDetailsText: {
       padding: 20
     },
     button: {
-      backgroundColor: "#000000",
+      fontFamily: 'GraphikSemibold',
+      backgroundColor: "rgb(227, 228, 228)",
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 3,
+        height: 3,
+      },
+      shadowOpacity: 0.30,
+      shadowRadius: 2,
+      elevation: 5,
+
       padding: 10,
       width: 120,
       marginTop: 20,
       borderRadius: 50,
       justifyContent: "space-between"
     },
+    sendButton: {
+        fontFamily: 'GraphikSemibold',
+        backgroundColor: 'rgb(79,170,248)',
+        padding: 10,
+        width: 120,
+        marginTop: 20,
+        borderRadius: 50,
+        justifyContent: "space-between"
+    },
     buttonMeal: {
-      backgroundColor: "#000000",
+      backgroundColor: "rgb(227, 228, 228)",
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 3,
+        height: 3,
+      },
+      shadowOpacity: 0.30,
+      shadowRadius: 2,
+      elevation: 5,
+
       padding: 10,
-      width: 90,
+      width: 87,
     //   marginTop: 10,
       borderRadius: 50,
       justifyContent: "space-between"
@@ -414,6 +482,11 @@ const styles = StyleSheet.create({
       borderRadius: 50,
       justifyContent: "space-between"
     },
+    buttonText: {
+        fontWeight:'bold', 
+        textAlign: 'center',
+        fontSize: 13
+    },
     mealContainer: {
       backgroundColor: "white",
       borderRadius: 20,
@@ -423,6 +496,34 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       margin: 20
       // alignItems: 'center'
+    },
+    bottomBitmoji: {
+        width: 365,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+        marginBottom: 30
+    },
+    buttonTop: {
+        backgroundColor: "rgb(227, 228, 228)",
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 3,
+          height: 3,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 2,
+        elevation: 5,
+
+        padding: 10,
+        width: 140,
+        // margin: 20,
+        marginTop: 5,
+        marginBottom: 30,
+        borderRadius: 50,
+        // color: 'white'
+        // justifyContent: "space-between"
     }
   });
   

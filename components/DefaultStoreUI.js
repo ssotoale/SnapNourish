@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as Font from 'expo-font';
 
 export default function Meals({dayMeal}) {
+
+    useEffect(() => {
+        (async () => await Font.loadAsync({
+          'GraphikRegular': require('../assets/fonts/GraphikRegular.otf'),
+        //   Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        }))();
+    }, [])
+
     return (
         <View>
             {/* <Text>Select what you're looking for!</Text> */}
@@ -10,13 +19,13 @@ export default function Meals({dayMeal}) {
                 <View style={styles.bubbleContainer}>
                     <View style={styles.detailImage}>
                         <Image 
-                            source={require('../assets/icon.png')}
-                            style={{width: 75, height: 75}}
+                            source={require('../assets/2021_Nourish_Snap_logo.png')}
+                            style={{width: 55, height: 90, marginLeft: 15}}
                         />
                     </View>
                     <View style={styles.detailText}>
                         <Text style={{fontWeight: 'bold', marginBottom: 10}}>Sign up for CalFresh</Text>
-                        <Text style={{marginBottom: 10}}>CalFresh is California's Supplemental Nutrition Assistance Program</Text>
+                        <Text style={styles.textbubble}>CalFresh is California's Supplemental Nutrition Assistance Program</Text>
                         <TouchableOpacity style={styles.bubbleButton}>
                             <Text style={{fontWeight: 'bold'}}>Apply Now</Text>
                         </TouchableOpacity>
@@ -27,7 +36,7 @@ export default function Meals({dayMeal}) {
                 <View style={styles.bubbleContainer}>
                     <View style={styles.detailImage}>
                         <Image 
-                            source={require('../assets/icon.png')}
+                            source={require('../assets/question_mark-01.png')}
                             style={{width: 75, height: 75}}
                         />
                     </View>
@@ -35,7 +44,7 @@ export default function Meals({dayMeal}) {
                         <Text style={{fontWeight: 'bold', marginBottom: 10}}>Need help?</Text>
                         <Text style={{marginBottom: 10}}>Our answers to the questions you need</Text>
                         <TouchableOpacity style={styles.bubbleButton}>
-                            <Text style={{fontWeight: 'bold'}}>Apply Now</Text>
+                            <Text style={{fontWeight: 'bold'}}>Get Help</Text>
                         </TouchableOpacity>
                     </View>
                     {/* <Text>Sign up for CalFresh</Text> */}
@@ -86,7 +95,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'grey',
+        backgroundColor: "rgb(227, 228, 228)",
         borderRadius: 25,
         marginTop: 5,
         width: 100,
@@ -99,5 +108,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 5,
         marginBottom: 50
-    }
+    }, 
+    textbubble: {marginBottom: 10, fontFamily: 'GraphikRegular'}
 });

@@ -8,7 +8,7 @@ export default function Meals({dayMeal}) {
             
             <View style={styles.calfreshLogo}>
             <Image 
-                style={{width: 400, height: 180}}
+                style={{width: 300, height: 140}}
                 source={require('../assets/calfresh.png')}
             />
             </View>
@@ -87,13 +87,37 @@ export default function Meals({dayMeal}) {
                     placeholder={'Is everyone in the application a US citizen?'}
                 />
 
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <TouchableOpacity 
+                        style={styles.button}
+                    >
+                        <Text style={{color: "lightgrey"}}>Yes</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.button}
+                    >
+                        <Text style={{color: "lightgrey"}}>No</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <TextInput
                     // value={text}
                     style={styles.field}
                     placeholder={'Are you a college student?'}
                 />
-
+                
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <TouchableOpacity 
+                        style={styles.button}
+                    >
+                        <Text style={{color: "lightgrey"}}>Yes</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.button}
+                    >
+                        <Text style={{color: "lightgrey"}}>No</Text>
+                    </TouchableOpacity>
+                </View>
 
                 <TextInput
                     // value={text}
@@ -134,8 +158,8 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         width: 370,
         height: 40,
-        marginTop: 12,
-        marginBottom: 12,
+        marginTop: 10,
+        marginBottom: 1,
         paddingLeft: 15
     },
     buttonleft: {
@@ -157,8 +181,8 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         width: 185,
         height: 40,
-        marginTop: 12,
-        marginBottom: 12,
+        marginTop: 10,
+        // marginBottom: 0,
         // paddingLeft: 15
         // marginLeft: 5
 
@@ -170,7 +194,7 @@ const styles = StyleSheet.create({
         // alignItems: 'stretch'
     }, 
     submit: {
-        backgroundColor: 'lightblue',
+        backgroundColor: 'rgb(79,170,248)',
         color: 'white',
         width: 375,
         height: 50,

@@ -17,7 +17,7 @@ export default function Meals({dayMeal, navigation}) {
                         />
                         </View>
                         <View style={{margin: 10}}>
-                        <Text style={{fontWeight: 'bold', fontSize: 16, paddingLeft: 5}}>{meal.mealName}</Text>
+                        <Text style={{fontWeight: 'bold', fontSize: 16, paddingLeft: 5, width: 200}}>{meal.mealName}</Text>
                         <Text style={{paddingLeft: 5, fontSize: 13}}>{meal.mealPrepTime} minute meal | {meal.priceRange} Price Range</Text>
                         <TouchableOpacity
                             style={styles.recipeButton}
