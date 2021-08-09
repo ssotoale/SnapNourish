@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../constants/Colors";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, YellowBox } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Callout, Marker, Polygon} from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import colors from "../constants/Colors";
 import { render } from "react-dom";
 
@@ -44,10 +45,10 @@ export default function MapScreen({navigation}) {
       { id: "Grocery Store", name: "Smart and Final", latitude: 34.04145398670342, longitude: -118.21259654209187 },
       { id: "Farmers Market", name: "East LA Farmer's Market", latitude: 34.035989409230865, longitude: -118.15829650851983 },
       { id: "Farmers Market", name: "Historic Downtown Farmer's Market", latitude: 34.04909207602838, longitude: -118.24600910592015 },
-      { id: "Pantry", name: "Hospitality Kitchen", latitude: 34.04136433668679, longitude: -118.24147278228973 }
+      { id: "Pantry", name: "Hospitality Kitchen", latitude: 34.04136433668679, longitude: -118.24147278228973 },
+      // { id: "SamLocation", name: "Sam", latitude: 34.04665228450897, longitude: -118.20757001008553 } 
     ]
   }
-
   const [currLocation, setCurrLocation] = useState(null);
   const mapView = useRef(null);
   
@@ -227,7 +228,17 @@ export default function MapScreen({navigation}) {
       1000
     );
   };
-
+  const goToFriendLocation = () => {
+    mapView?.current.animateToRegion(
+      {
+        latitude: 34.04665228450897,
+        longitude: -118.20757001008553,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      1000
+    );
+  };
   return (
     <>
       <BottomSheet 
@@ -260,20 +271,32 @@ export default function MapScreen({navigation}) {
             // onr={alert("Popping a navigation from the bottom!")}
           >
             {/* <Image source={require('../assets/sam.png')} style={height: 100, width:100 } /> */}
-            <Image source={require('../assets/sam.png')} style={{height: 200, width:200 }} resizeMode="contain"/>
+            <Image source={require('../assets/file-2.png')} style={{height: 150, width:150 }} resizeMode="contain"/>
           {/* {bs.current.snapTo(0)} */}
           {/* navigation.navigate("Store") */}
-            <Callout onPress={() =>  navigation.navigate("Store")}> 
+            {/* <Callout onPress={() =>  navigation.navigate("Store")}>  */}
               {/* {console.log('hEY, SuP')} */}
               <View>
                 {/* file path weird */}
                 {/* <Image source={require('../assets/sam.png')} /> */}
-                <Text>Me</Text>
+                {/* <Text>Me</Text> */}
               </View>
-            </Callout>
+            {/* </Callout> */}
 
             {/* <Image source={'../assets/sam.png'} /> */}
 
+          </Marker>
+        ) : null}
+        {currLocation ? (
+          <Marker
+            coordinate={{latitude: 34.04665228450897, longitude: -118.20757001008553}}
+            title={"Friend Location"}
+            description={"Sam is here!"}
+          >
+            <Image source={require('../assets/sam2.png')} style={{height: 150, width:150 }} resizeMode="contain"/>
+              {/* <View>
+                <Text>Sam</Text>
+              </View> */}
           </Marker>
         ) : null}
         
@@ -285,18 +308,19 @@ export default function MapScreen({navigation}) {
           // title={marker.name}
           >
             {/* <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 100, width:100 }} resizeMode="contain"/> */}
-            {marker.id === "Grocery Store" ? <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {marker.id === "Community Fridge" ? <Image source={require('../assets/2021_Map_Pin_Community_Fridge.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {marker.id === "Farmers Market" ? <Image source={require('../assets/2021_Map_Pin_Farmers_Market.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {marker.id === "Pantry" ? <Image source={require('../assets/2021_Map_Pin_Pantry.png')} style={{height: 80, width:80 }} resizeMode="contain"/> : null}
-            {/* Bottom line will crash if you save while on the map screen. Otherwise no issues. Reload expo if an error is thrown. The storeScreen should open up no matter which pin is clicked atm. */}
-            {/* <Callout onPress={() =>  navigation.navigate("Store")}>  */}
-            <Callout>
+            {marker.id === "Grocery Store" ? <Image source={require('../assets/2021_Map_Pin_Grocery.png')} style={{height: 60, width:60 }} resizeMode="contain"/> : null}
+            {marker.id === "Community Fridge" ? <Image source={require('../assets/2021_Map_Pin_Community_Fridge.png')} style={{height: 60, width:60 }} resizeMode="contain"/> : null}
+            {marker.id === "Farmers Market" ? <Image source={require('../assets/2021_Map_Pin_Farmers_Market.png')} style={{height: 60, width:60 }} resizeMode="contain"/> : null}
+            {marker.id === "Pantry" ? <Image source={require('../assets/2021_Map_Pin_Pantry.png')} style={{height: 60, width:60 }} resizeMode="contain"/> : null}
+            {/* {marker.id === "SamLocation" ? <Image source={require('../assets/sam2.png')} style={{height: 150, width:150 }} resizeMode="contain"/> : null}             */}
+            {/* <Callout> */}
+            <Callout onPress={() =>  navigation.navigate("Store")}> 
               <Text>{marker.name}</Text>
             </Callout>
           </Marker>
         ))
         }
+        
 
       </MapView>
       {currLocation ? (
@@ -314,6 +338,36 @@ export default function MapScreen({navigation}) {
           </TouchableOpacity>
         </View>
       ) : null}
+
+        <View style={styles.locateButtonTextContainer}>
+        <Text>My Bitmoji</Text>
+        {/* <Ionicons name="text" size={24} color="white" /> */}
+        </View>
+
+        {/* <View style={styles.friend} onPress={goToFriendLocation}>
+          <Image source={require('../assets/friend.png')} style={{height: 50, width:50 }} resizeMode="contain"/> 
+        </View> */}
+        {currLocation ? (
+        <View style={styles.locateButton2Container}>
+          <TouchableOpacity
+            style={styles.locateButton2}
+            onPress={goToFriendLocation}
+          >
+            {/* <Ionicons
+              name={"navigate"}
+              size={40}
+              color={Colors.snapblue}
+              style={{ marginTop: 5, marginLeft: 3 }}
+            /> */}
+            <FontAwesome5 name="user-friends" size={35} color={Colors.snapblue} style={{ marginTop: 5, marginLeft: 3 }}/>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+        <View style={styles.locateButtonText2Container}>
+        <Text>Friends</Text>
+        {/* <Ionicons name="text" size={24} color="white" /> */}
+        </View>
+
     </>
   );
 }
@@ -322,10 +376,39 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  locateButton2Container: {
+    position: "absolute",
+    bottom: 20,
+    right: 10,
+  },
+  locateButton2: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: colors.snapyellow,
+  },
+  locateButtonText2Container: {
+    position: "absolute",
+    bottom: 70,
+    right: 15,
+    backgroundColor: colors.snapyellow,
+    // padding: 5,
+    // width: 100,
+    borderRadius: 50,
+  },
+  locateButtonTextContainer: {
+    position: "absolute",
+    bottom: 70,
+    left: 15,
+    backgroundColor: colors.snapyellow,
+    // padding: 5,
+    // width: 100,
+    borderRadius: 50,
+  },
   locateButtonContainer: {
     position: "absolute",
     bottom: 20,
-    right: 20,
+    left: 20,
   },
   locateButton: {
     height: 50,
