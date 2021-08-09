@@ -9,8 +9,6 @@ import { assets } from "../react-native.config.js";
 
 export default function StoriesScreen({navigation}) {
 
-    const [dummySelf, setDummySelf] = useState([]);
-    // const [test, setTest] = useState('NameHere');
     const [store, setStore] = useState({});
     const [breakfast, setBreakfast] = useState([]);
     const [lunch, setLunch] = useState([]);
@@ -18,36 +16,17 @@ export default function StoriesScreen({navigation}) {
     const [dayMeal, setDayMeal] = useState(null);
     const [otherUI, setOtherUI] = useState(undefined);
     const [storeImage, setStoreImage] = useState(null);
-    const [mealImage, setMealImage] = useState(null);
 
     let storeName;
     // let dayMeal;
     let breakfastImageTest;
 
     useEffect(() => {
-        // (async () => {
-            // let dummy = await db.collection("dummyTest").doc("dummySelfData").get();
-            // setDummySelf(dummy.data().self);
-            // console.log('Printing dummy data to console')
-            // console.log(dummy.data().self);
-            // console.log(dummySelf[0]);
-
-            // let d = db.collection("groceryData").doc("stores").get();
-            // setStore(d.data().groceryOutlet);
-            // setBreakfast(d.data().groceryOutlet['meals']['breakfast']);
-            // setLunch(d.data().groceryOutlet['meals']['lunch']);
-            // setDinner(d.data().groceryOutlet['meals']['dinner']);
-            // console.log('Printing Store Data');
-            // console.log(store);
-            // storeName = store['name'];
-            // console.log(storeName);
-        // })();
-
         var docRef = db.collection("groceryData").doc("stores");
 
         docRef.get().then((doc) => {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
+                // console.log("Document data:", doc.data());
                 setStore(doc.data().groceryOutlet);
                 setBreakfast(doc.data().groceryOutlet['meals']['breakfast']);
                 setLunch(doc.data().groceryOutlet['meals']['lunch']);
@@ -80,7 +59,7 @@ export default function StoriesScreen({navigation}) {
             setOtherUI('calfresh');
         }
 
-        console.log(s);
+        // console.log(s);
 
         if(dayMeal)
             console.log('daymeal is defined')
@@ -89,9 +68,6 @@ export default function StoriesScreen({navigation}) {
             console.log('otherUI is defined')
     };
 
-    // storeName = store['name'];
-    // // dayMeal = store.meals.breakfast;
-    // breakfastImageTest = store.meals.breakfast[0].image;
 
     if ((breakfast && lunch && dinner) === []) {
         return (
@@ -104,8 +80,6 @@ export default function StoriesScreen({navigation}) {
         return (
         
         <ScrollView>
-            {console.log('loading')}
-            {/* {console.log(breakfast)} */}
             <View style={styles.panel}>
             <View>
                 <View style={styles.groceryDetails}>
@@ -147,7 +121,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{padding: 5}}>
                         <TouchableOpacity 
                             style={styles.button}
-                            onPress={() => callGroceryUI('calfresh')}
+                            onPress={() => setDayMeal(null)}
                         >
                             <Text style={styles.buttonText}>Resources</Text>
                         </TouchableOpacity>
@@ -176,7 +150,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => callGroceryUI('breakfast')} 
+                            onPress={() => setDayMeal(breakfast)} 
                         >
                             <Text style={styles.buttonText}>Breakfast</Text>
                         </TouchableOpacity>
@@ -185,7 +159,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => callGroceryUI('lunch')} 
+                            onPress={() => setDayMeal(lunch)} 
                         >
                             <Text style={styles.buttonText}>Lunch</Text>
                         </TouchableOpacity>
@@ -194,7 +168,7 @@ export default function StoriesScreen({navigation}) {
                     <View style={{paddingLeft: 5, paddingRight: 5}}>
                         <TouchableOpacity 
                             style={styles.buttonMeal}
-                            onPress={() => callGroceryUI('dinner')} 
+                            onPress={() => setDayMeal(dinner)} 
                         >
                             <Text style={styles.buttonText}>Dinner</Text>
                         </TouchableOpacity>
@@ -209,14 +183,6 @@ export default function StoriesScreen({navigation}) {
                         </TouchableOpacity>
                     </View>
                 </View>
-
-                
-                {
-                //trying to retrieve data from firebase
-                /* <View>
-                <Text>{dummySelf[0]}</Text>
-                <Text>{dummySelf[1]}</Text>
-                </View> */}
 
                 {/*MAPPING THROUGH MEALS HERE*/}
                     {
@@ -239,148 +205,14 @@ export default function StoriesScreen({navigation}) {
                                 />
                             </View>
                         </View>
-                    : otherUI ?
-                        <CalFresh />
-                    :
-                        <DefaultStoreUI />
+                        :
+                        <DefaultStoreUI dayMeal={dayMeal}/>
+                    // : otherUI ?
+                    //     <CalFresh />
+                    // :
+                    //     <DefaultStoreUI />
                     }     
 
-                {/* {Delete the bottom hard coded meal placeholders} */}
-
-                {/* <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                        onPress={() => navigation.navigate('Recipe')}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View>
-
-                <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View>
-
-                <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View>
-
-                <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                        // onPress={() => navigation.navigate('Recipe')}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View>
-
-                <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View>
-
-                <View style={styles.mealContainer}>
-                <View style={styles.mealDetails}>
-                    <View>
-                    <Image
-                        style={styles.imagePlaceholder}
-                        source={require('../assets/icon.png')}
-                    />
-                    </View>
-                    <View style={{margin: 10}}>
-                    <Text style={{fontWeight: 'bold', fontSize: 18, paddingLeft: 10}}>Food Name</Text>
-                    <Text style={{paddingLeft: 10}}>10 minute meal | $6 | 6 servings</Text>
-                    <TouchableOpacity
-                        style={styles.recipeButton}
-                    >
-                        <Text style={{fontWeight: "bold", textAlign: 'center'}}>Recipe</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                </View> */}
-
-                {/* <Text>Grocery Lists</Text>
-                <Text>Your pinned content should go here!</Text>   */}
-
-
-                {/* <Text style={{width: 375, textAlign: 'center', fontWeight: 'bold', marginTop: 15, marginBottom: 15}}>Grab some resources</Text>
-
-                <View style={styles.bottomBitmoji}>
-                <Image 
-                    style={{width: 200, height: 200}}
-                    source={require('../assets/baconBit.png')}
-                />
-                </View> */}
 
             </View>      
             </View>
@@ -430,7 +262,7 @@ const styles = StyleSheet.create({
       padding: 20
     },
     button: {
-      fontFamily: 'GraphikSemibold',
+    //   fontFamily: 'GraphikSemibold',
       backgroundColor: "rgb(227, 228, 228)",
       shadowColor: '#000',
       shadowOffset: {
@@ -448,7 +280,7 @@ const styles = StyleSheet.create({
       justifyContent: "space-between"
     },
     sendButton: {
-        fontFamily: 'GraphikSemibold',
+        // fontFamily: 'GraphikSemibold',
         backgroundColor: 'rgb(79,170,248)',
         padding: 10,
         width: 120,

@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import CalFresh from '../components/CalFresh.js';
 import * as Font from 'expo-font';
 
+
 export default function Meals({dayMeal}) {
+
+    const [UIScreen, setUIScreen] = useState(null);
 
     useEffect(() => {
         (async () => await Font.loadAsync({
@@ -13,8 +17,12 @@ export default function Meals({dayMeal}) {
     }, [])
 
     return (
+        
         <View>
-            {/* <Text>Select what you're looking for!</Text> */}
+            {UIScreen ? 
+                <CalFresh dayMeal={dayMeal}/>
+                :
+                <View>
             <View>
                 <View style={styles.bubbleContainer}>
                     <View style={styles.detailImage}>
@@ -26,11 +34,13 @@ export default function Meals({dayMeal}) {
                     <View style={styles.detailText}>
                         <Text style={{fontWeight: 'bold', marginBottom: 10}}>Sign up for CalFresh</Text>
                         <Text style={styles.textbubble}>CalFresh is California's Supplemental Nutrition Assistance Program</Text>
-                        <TouchableOpacity style={styles.bubbleButton}>
+                        <TouchableOpacity 
+                        style={styles.bubbleButton}
+                        onPress={() => setUIScreen('calfresh')}
+                        >
                             <Text style={{fontWeight: 'bold'}}>Apply Now</Text>
                         </TouchableOpacity>
                     </View>
-                    {/* <Text>Sign up for CalFresh</Text> */}
                 </View>
 
                 <View style={styles.bubbleContainer}>
@@ -47,7 +57,6 @@ export default function Meals({dayMeal}) {
                             <Text style={{fontWeight: 'bold'}}>Get Help</Text>
                         </TouchableOpacity>
                     </View>
-                    {/* <Text>Sign up for CalFresh</Text> */}
                 </View>
             </View>
 
@@ -60,9 +69,8 @@ export default function Meals({dayMeal}) {
             />
             </View>
 
-            {/* <View style={styles.bubbleContainer}>
-                <Text>Sign up for CalFresh</Text>
-            </View> */}
+                </View>
+            }
         </View>   
     );
 }
@@ -109,5 +117,5 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginBottom: 50
     }, 
-    textbubble: {marginBottom: 10, fontFamily: 'GraphikRegular'}
+    textbubble: {marginBottom: 10}
 });
