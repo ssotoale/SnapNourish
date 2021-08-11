@@ -12,7 +12,12 @@ Link to the final video you made!
 
 # Main Features
 
-## Feature 1 
+## Snap Nourish Maps 
+Show off the main features of the React Native prototype.
+
+**Add Screenshots or GIFs!!! —> honestly the most important part!**
+
+## Snap Nourish Grocery Store View 
 Show off the main features of the React Native prototype.
 
 **Add Screenshots or GIFs!!! —> honestly the most important part!**
@@ -21,27 +26,25 @@ Show off the main features of the React Native prototype.
 # Installation & Setup
 
 ## Install
-1. Describe. 
 
-To get started, fork or clone the repo and then within the terminal inside the repo run:
+1. To get started, fork or clone the repo and then within the terminal inside the repo run:
 
 ```
 yarn install
 ```
 
-Next, you want to make sure to install the Expo app through your phone before being able to view the prototype.
+2. Next, you want to make sure to install the Expo app through your phone before being able to view the prototype.
 
 ## Set up
-1. Describe. 
 
-Within your terminal inside the repo, run:
+1. Within your terminal inside the repo, run:
 
 ```
 expo start
 ```
 
-Open the camera of your phone and scan the barcode from the link that opens immediately after running the command above. 
-Wait until Expo loads the project entirely. Then, register within the app and navigate to the map screen to see our added features.
+2. Open the camera of your phone and scan the barcode from the link that opens immediately after running the command above. 
+3. Wait until Expo loads the project entirely. Then, register within the app and navigate to the map screen to see our added features.
 
 # Technologies Used
 
@@ -52,12 +55,12 @@ Wait until Expo loads the project entirely. Then, register within the app and na
 
 | Name / Role      | Link to GitHub / LinkedIn |
 | ----------- | ----------- |
-| Luis Rangel  / Engineer      | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ)       |
-| Samantha Soto / Engineer     | [GitHub](https://www.youtube.com/watch?v=dQw4w9WgXcQ)         |
-| Lexie Williamson / Designer  | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ)       |
-| Fecilia Mesadieu / Designer  | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ)       |
-| Nayeli Montano/ Story Teller | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ)       |
-| Anna Garcia / Story Teller   | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ)       |
+| Luis Rangel  / Engineer      | [LinkedIn](https://www.youtube.com/watch?v=dQw4w9WgXcQ) / [GitHub](https://github.com/luismr00)     |
+| Samantha Soto / Engineer     | [LinkedIn](https://www.linkedin.com/in/samantha-soto-alejos/) / [GitHub](https://github.com/ssotoale)     |
+| Lexie Williamson / Designer  | [LinkedIn](https://www.linkedin.com/in/lexiejwilliamson/)       |
+| Fecilia Mesadieu / Designer  | [LinkedIn](https://www.linkedin.com/in/feliciamesadieu/)       |
+| Nayeli Montano/ Story Teller | [LinkedIn](https://www.linkedin.com/in/nayeli-montano/)       |
+| Anna Garcia / Story Teller   | [LinkedIn](https://www.linkedin.com/in/annangarcia/)       |
 
 #  Acknowledgements
 
