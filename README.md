@@ -16,6 +16,8 @@ Link to the final video you made!
 Show off the main features of the React Native prototype.
 
 ![](https://i.imgur.com/agSvcgL.gif)
+<img src="https://i.imgur.com/agSvcgL.gif" width=50><br>
+
 
 ## Snap Nourish Grocery Store View 
 Show off the main features of the React Native prototype.
