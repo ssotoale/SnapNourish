@@ -26,7 +26,7 @@ The following functionality is complete:
 Show off the main features of the React Native prototype.
 
 **Add Screenshots or GIFs!!! —> honestly the most important part!**
-
+<img src="https://i.imgur.com/djdQ6Qi.gif" width=200><br>
 
 # Installation & Setup
 
