@@ -16,7 +16,7 @@ The following functionality is complete for the Map Screen:
 
 * [x] Various grocery stores, food pantries, and community fridges mapped out in Boyle Heights.
 * [x] Users can click on the icons and it will navigate them to a new screen where it shows multiple information the selected store has to offer. 
-* [x] Locations are hard coded at the moment but with an api the feature would map over several locations if the data were to be provided by sponsoring stores partnering with Snap. 
+* [x] Locations are hard coded at the moment but with an API the feature would map over several locations if the data were to be provided by sponsoring stores partnering with Snap. 
 
 <!-- <img src="https://i.imgur.com/agSvcgL.gif" width=200><br> -->
 <p align="center">
