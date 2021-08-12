@@ -29,7 +29,7 @@ Show off the main features of the React Native prototype.
 <!-- ![](./assets/GIFluisQT.gif) -->
 <!-- <img src="./assets/GIFluisQT.gif" width="200" /> -->
 <p align="center">
-  <img width="200" src="./assets/GIFluisQT.gif">
+  <img width="380" src="./assets/GIFluisQT.gif">
 </p>
 
 # Installation & Setup
