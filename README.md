@@ -2,22 +2,21 @@
 
 # Introduction
 
-Add 3-5 sentences about your final project here. 
+Snap Nourish is a Snap Academy final project which goal was to create a new feature as if it were to be added towards the Snapchat app itself. Beforehand, different teams of six scholars were made throughout the academy where each team had to focus on a seperate topic upon creating the new feature. Each team was composed of two scholars from each different Snap Academy which consisted of two engineers, two designers, and two storytellers. Together the whole project was group effort in creating Snap Nourish. The final outcome of the project, however, is only a prototype itself and not necessarily a final product.
 
-Snap Nourish is a Snap Academy final project which goal was to create a new feature as if it were to be added towards the Snapchat app itself. Beforehand, different teams of 6 scholars were made throughout the academy where each team had to focus on a seperate topic upon creating the new feature. Each team was composed of two scholars from each different Snap Academy which consisted of engineers, designers, and storytellers. Together the whole project was group effort in creating Snap Nourish.
+As for the purpose of the feature, the project's objective was to bring awareness to Snap users about food security, educate them on healthier food choices through recipes, and provide a resource by giving them local groceries with the most affordable deals (bring awareness, educate, and provide resources). Snap has always been a company that cares for the wellbeing of their users. With the new feature, it promotes food security awareness and incorporates all of Snaps values of Smart, Kind, and Creative. By adding on to the geolocation feature we are strengthening the existing communities by helping people become food secure and increasing the usage of other established features, such as Snap Stories.
 
-As for the purpose of the feature, the project's objective was to bring awareness to Snap users about food security, educate them on healthier food choices through recipes, and provide a resource by giving them local groceries with the most affordable deals (bring awareness, educate, and provide resources). Snap has always been a company that cares for the wellbeing of their users. With the new feature, it promotes food security awareness and incorporates all of Snaps values of Smart, Kind, and Creative. By adding on to the geolocation feature we are strengthening the existing communities by helping people become food secure and increasing the usage of other  established features (Our Stories) .
-
-Link to the final video you made!
+[Click here](https://drive.google.com/file/d/15b2CJ6q6WsKxXzptSPjXvsfQbYBOuj0x/view?usp=sharing) to watch our video.
 
 # Main Features
 
 ## Snap Nourish Maps 
 
-The following functionality is complete:
+The following functionality is complete for the Map Screen:
 
 * [x] Various grocery stores, food pantries, and community fridges mapped out in Boyle Heights.
 * [x] Users can click on the icons and it will navigate them to a new screen where it shows multiple information the selected store has to offer. 
+* [x] Locations are hard coded at the moment but with an api the feature would map over several locations if the data were to be provided by sponsoring stores partnering with Snap. 
 
 <!-- <img src="https://i.imgur.com/agSvcgL.gif" width=200><br> -->
 <p align="center">
@@ -26,11 +25,13 @@ The following functionality is complete:
 
 
 ## Snap Nourish Grocery Store View 
-Show off the main features of the React Native prototype.
 
-<!-- <img src="https://gfycat.com/hotplumphawk" width=200><br> -->
-<!-- ![](./assets/GIFluisQT.gif) -->
-<!-- <img src="./assets/GIFluisQT.gif" width="200" /> -->
+The following functionality is complete for the Store Screen:
+
+* [x] Different interfaces that a user can navigate through to find out more resources about the grocery store being clicked from the map screen. 
+* [x] Buttons that allow users to navigate different interfaces. Currently only the resource, meals, and recipe buttons are functional at the moment.  
+* [x] The presented data that the user is able to observe comes from a database called firebase. More info about a given grocery store would be expanded if an api would have been possible to use.   
+
 <p align="center">
   <img width="380" src="./assets/GIFluisQT.gif">
 </p>
@@ -45,7 +46,7 @@ Show off the main features of the React Native prototype.
 yarn install
 ```
 
-2. Next, you want to make sure to install the Expo app through your phone before being able to view the prototype.
+2. Next, you want to make sure to install the Expo app through your phone before being able to view the prototype. Additional info regarding Expo can be found down below under the 'Technologies Used' section.
 
 ## Set up
 
@@ -55,13 +56,14 @@ yarn install
 expo start
 ```
 
-2. Open the camera of your phone and scan the barcode from the link that opens immediately after running the command above. 
+2. Open the camera of your phone and scan the barcode from the link that opens immediately into your browser after running the command above. This should take you towards the Expo app to be able to view the project within your phone. 
 3. Wait until Expo loads the project entirely. Then, register within the app and navigate to the map screen to see our added features.
 
 # Technologies Used
 
-* React Native
-* Firebase
+- [React Native](https://reactnative.dev/docs/getting-started)
+- [Expo](https://docs.expo.dev/index.html)
+- [FireBase](https://firebase.google.com/docs)
 
 # Project Team Members 
 
@@ -76,4 +78,5 @@ expo start
 
 #  Acknowledgements
 
-Cite and link any code you used from other people!
+- [ChapSnat Template](https://github.com/Snap-Engineering-Academy-2021/chapsnat-sandbox)
+- [React Native Gifted Chat](https://github.com/FaridSafi/react-native-gifted-chat)
