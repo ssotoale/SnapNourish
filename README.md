@@ -25,7 +25,8 @@ The following functionality is complete:
 ## Snap Nourish Grocery Store View 
 Show off the main features of the React Native prototype.
 
-<img src="https://gfycat.com/hotplumphawk" width=200><br>
+<!-- <img src="https://gfycat.com/hotplumphawk" width=200><br> -->
+![](./assets/GIFluisQT.gif)
 
 # Installation & Setup
 
