@@ -13,8 +13,11 @@ Link to the final video you made!
 # Main Features
 
 ## Snap Nourish Maps 
-Here is a prototype of Snap Nourish using React Native and firebase. Currently we have a few grocery stores mapped out in Boyle Heights available on our feature. Users can click on the icons and notice that it will navigate them to a new screen where it shows multiple information that the selected store has to offer. 
 
+The following functionality is complete:
+
+* [x] Various grocery stores, food pantries, and community fridges mapped out in Boyle Heights.
+* [x] Users can click on the icons and it will navigate them to a new screen where it shows multiple information the selected store has to offer. 
 <img src="https://i.imgur.com/agSvcgL.gif" width=200><br>
 
 
