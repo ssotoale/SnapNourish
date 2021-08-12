@@ -27,6 +27,7 @@ Show off the main features of the React Native prototype.
 
 <!-- <img src="https://gfycat.com/hotplumphawk" width=200><br> -->
 ![](./assets/GIFluisQT.gif)
+<img src="./assets/GIFluisQT.gif" width="200" />
 
 # Installation & Setup
 
