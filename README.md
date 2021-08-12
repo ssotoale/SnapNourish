@@ -26,8 +26,11 @@ The following functionality is complete:
 Show off the main features of the React Native prototype.
 
 <!-- <img src="https://gfycat.com/hotplumphawk" width=200><br> -->
-![](./assets/GIFluisQT.gif)
-<img src="./assets/GIFluisQT.gif" width="200" />
+<!-- ![](./assets/GIFluisQT.gif) -->
+<!-- <img src="./assets/GIFluisQT.gif" width="200" /> -->
+<p align="center">
+  <img width="460" height="300" src="./assets/GIFluisQT.gif">
+</p>
 
 # Installation & Setup
 
