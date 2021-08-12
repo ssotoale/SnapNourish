@@ -15,8 +15,7 @@ Link to the final video you made!
 ## Snap Nourish Maps 
 Show off the main features of the React Native prototype.
 
-![](https://i.imgur.com/agSvcgL.gif)
-<img src="https://i.imgur.com/agSvcgL.gif" width=50><br>
+<img src="https://i.imgur.com/agSvcgL.gif" width=200><br>
 
 
 ## Snap Nourish Grocery Store View 
