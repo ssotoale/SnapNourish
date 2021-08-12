@@ -19,7 +19,10 @@ The following functionality is complete:
 * [x] Various grocery stores, food pantries, and community fridges mapped out in Boyle Heights.
 * [x] Users can click on the icons and it will navigate them to a new screen where it shows multiple information the selected store has to offer. 
 
-<img src="https://i.imgur.com/agSvcgL.gif" width=200><br>
+<!-- <img src="https://i.imgur.com/agSvcgL.gif" width=200><br> -->
+<p align="center">
+  <img width="380" src="./assets/GIFsamQT.gif">
+</p>
 
 
 ## Snap Nourish Grocery Store View 
